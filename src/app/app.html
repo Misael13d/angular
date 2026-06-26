@@ -1,2 +1,77 @@
-<h1>hola mundo</h1>
+<form (ngSubmit)="forma.valid && enviarDatos()" #forma="ngForm">
+    <label for="">Placa:</label>
+    <input
+        type="text"
+        #placa1="ngModel"
+        [(ngModel)]="register.placa"
+        name="placa"
+        class="form-control"
+        required
+        minlength="4"
+        [ngClass]="{'is-valid': !placa1.invalid, 'invalid': placa1.invalid}"
+    />
+    @if(placa1.invalid && (placa1.dirty || placa1.touched)){
+        <div class="alert alert-danger">
+            @if(placa1.errors?.['required']){
+                <p>El campo placa es requerido</p>
+            }
+            @if(placa1.errors?.['minlength']){
+                <p>El campo placa debe tener al menos 4 caracteres</p>
+            }
+        </div>
+    }
+
+    <label for="">Color:</label>
+    <input
+        type="text"
+        #color1="ngModel"
+        [(ngModel)]="register.color"
+        name="color"
+        class="form-control"
+        required
+        minlength="4"
+        [ngClass]="{'is-valid': !color1.invalid, 'invalid': color1.invalid}"
+    />
+    @if(color1.invalid && (color1.dirty || color1.touched)){
+        <div class="alert alert-danger">
+            @if(color1.errors?.['required']){
+                <p>El campo color es requerido</p>
+            }
+            @if(color1.errors?.['minlength']){
+                <p>El campo color debe tener al menos 4 caracteres, y en español (ejemplo: rojo, azul, etc)</p>
+            }
+        </div>
+    }
+
+
+    <label for="">Modelo:</label>
+    <input
+        type="number"
+        #modelo1="ngModel"
+        [(ngModel)]="register.modelo"
+        name="modelo"
+        class="form-control"
+        required
+        minlength="4"
+        maxlength="4"
+        [ngClass]="{'is-valid': !modelo1.invalid, 'invalid': modelo1.invalid}"
+    />
+    @if(modelo1.invalid && (modelo1.dirty || modelo1.touched)){
+        <div class="alert alert-danger">
+            @if(modelo1.errors?.['required']){
+                <p>El campo modelo es requerido</p>
+            }
+            @if(modelo1.errors?.['minlength']){
+                <p>El campo modelo debe tener al menos 4 caracteres</p>
+            }
+            @if(modelo1.errors?.['maxlength']){
+                <p>El campo modelo debe tener como máximo 4 caracteres</p>
+            }
+        </div>
+    }
+
+    <button type="submit" [disabled]="!forma.valid">Guardar</button>
+</form>
+
+
 <router-outlet />
