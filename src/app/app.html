@@ -1,2 +1,160 @@
-<h1>hola mundo</h1>
+<form [formGroup]="regForm" (ngSubmit)="enviarDatos()">
+
+  <label for="">Placa:</label>
+
+  <input 
+    type="text"
+    formControlName="placa"
+    class="form-control"
+    [ngClass] = "{'is-valid':!f['placa'].invalid, 'invalid':f['placa'].invalid}"
+  >
+  @if(f['placa'].invalid && xenviado){
+    <div class="alert alert-danger">
+        @if(f['placa'].errors?.['required']){
+            <div>Debe de Ingresar un valor (Atributo Obligatorio)</div>
+        }
+        @if(f['placa'].errors?.['minlength']){
+            <div>Debe de Ingresar minimo cuatro caracteres</div>
+        }
+
+    </div>
+  }
+  <br>
+
+   <label for="">Color:</label>
+
+  <input 
+    type="text"
+    formControlName="color"
+    class="form-control"
+    [ngClass] = "{'is-valid':!f['color'].invalid, 'invalid':f['color'].invalid}"
+  >
+  @if(f['color'].invalid && xenviado){
+    <div class="alert alert-danger">
+        @if(f['color'].errors?.['required']){
+            <div>Debe de Ingresar un valor (Atributo Obligatorio)</div>
+        }
+        @if(f['color'].errors?.['minlength']){
+            <div>Debe de Ingresar minimo cuatro caracteres</div>
+        }
+
+    </div>
+  }
+
+   <br>
+
+   <label for="">Modelo:</label>
+
+  <input 
+    type="text"
+    formControlName="modelo"
+    class="form-control"
+    [ngClass] = "{'is-valid':!f['modelo'].invalid, 'invalid':f['modelo'].invalid}"
+  >
+  @if(f['modelo'].invalid && xenviado){
+    <div class="alert alert-danger">
+        @if(f['modelo'].errors?.['required']){
+            <div>Debe de Ingresar un valor (Atributo Obligatorio)</div>
+        }
+        @if(f['modelo'].errors?.['minlength']){
+            <div>Debe de Ingresar minimo cuatro caracteres</div>
+        }
+
+    </div>
+  }
+
+
+  <label for="Registrado">Registrado:</label>
+
+  Si <input type="radio" value="SI" formControlName="registrado">
+  No <input type="radio" value="NO" formControlName="registrado">
+
+    @if(f['registrado'].invalid && xenviado){
+    <div class="alert alert-danger">
+        @if(f['registrado'].errors?.['required']){
+            <div>Debe de Ingresar un valor (Atributo Obligatorio)</div>
+        }
+        @if(f['registrado'].errors?.['minlength']){
+            <div>Debe de Ingresar minimo cuatro caracteres</div>
+        }
+
+    </div>
+  }
+
+    <br>
+
+    <label for="">Radicado en:</label>
+    <select formControlName="departamento" class="form-select">
+        @for(datos of departamentos; track datos){
+            <option [value]="datos">{{ datos}}</option>
+        }
+    </select>
+
+    @if(f['departamento'].invalid && xenviado){
+        <div class="alert alert-danger">
+            @if(f['departamento'].errors?.['required']){
+                <div>Debe seleccionar un departamento</div>
+            }
+
+        </div>
+    }
+
+    <br>
+
+    <label for="">Correo electronico:</label>
+
+    <input 
+        type="text"
+        formControlName="correo"
+        class="form-control"
+        [ngClass] = "{'is-valid':!f['correo'].invalid, 'invalid':f['correo'].invalid}"
+    >
+    @if(f['correo'].invalid && xenviado){
+        <div class="alert alert-danger">
+            @if(f['correo'].errors?.['required']){
+                <div>Debe de Ingresar un valor (Atributo Obligatorio)</div>
+            }
+            @if(f['correo'].errors?.['minlength']){
+                <div>Debe de Ingresar minimo cuatro caracteres</div>
+            }
+            @if(f['correo'].errors?.['maxlength']){
+                <div>Debe de Ingresar maximo quince caracteres</div>
+            }
+            @if(f['correo'].errors?.['pattern']){
+                <div>Debe de Ingresar un correo valido</div>
+            }
+
+        </div>
+    }
+
+    <br>
+
+    <label for="">Contraseña:</label>
+
+    <input 
+        type="text"
+        formControlName="password"
+        class="form-control"
+        [ngClass] = "{'is-valid':!f['password'].invalid, 'invalid':f['password'].invalid}"
+    >
+    @if(f['password'].invalid && xenviado){
+        <div class="alert alert-danger">
+            @if(f['password'].errors?.['required']){
+                <div>Debe de Ingresar un valor (Atributo Obligatorio)</div>
+            }
+            @if(f['password'].errors?.['pattern']){
+                <div>Debe tener al menos una letra mayúscula, una letra minúscula y un dígito, mas de 8 caracteres</div>
+            }
+
+        </div>
+    }
+    <br>
+
+  <button type="submit">Guardar</button>
+
+
+
+
+</form>
+
 <router-outlet />
