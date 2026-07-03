@@ -1,2 +1,10 @@
-<h1>hola mundo</h1>
+<h1>{{ title() }}</h1>
+
+<ul>
+  @for (dat of listaComentarios(); track dat) {
+    <li>
+      {{ dat.name }}
+    </li>
+  }
+</ul>
 <router-outlet />
