@@ -10,7 +10,7 @@ export class CommentsService {
   	private readonly xurlApi = "https://jsonplaceholder.typicode.com/comments";
 	
     private readonly xhttp = inject(HttpClient);
-	  getComentarios(): Observable<Comments[]> {
+	getComentarios(): Observable<Comments[]> {
 		return this.xhttp.get<Comments[]>(this.xurlApi);
 	}
 }
