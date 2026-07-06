@@ -1,22 +1,10 @@
-<h1>Practica 24 - API GET</h1>
+<h1>Lista de alumnos</h1>
 
-<table border="1" cellpadding="8" cellspacing="0" class="tabla">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Email</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (dat of listaComentarios(); track dat.id) {
-      <tr>
-        <td>{{ dat.id }}</td>
-        <td>{{ dat.name }}</td>
-        <td>{{ dat.email }}</td>
-      </tr>
-    }
-  </tbody>
-</table>
+<ul>
+  @for (dat of listaAlumnos(); track dat){
+    <li>{{ dat.name }}</li>
+    <li>{{dat.ru}}</li>
+  }
+</ul>
 
 <router-outlet />

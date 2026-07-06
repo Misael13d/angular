@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CommentsService } from './servicios/comments.service';
-import { Comments } from './modelos/comments.interface';
+import { Student } from './modelos/student.interface';
+import { PersonalService } from './servicios/personal.service';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +11,13 @@ import { Comments } from './modelos/comments.interface';
 })
 export class App {
   protected readonly title = signal('guia26');
-  private readonly xapiService = inject(CommentsService) 
-  protected listaComentarios = signal<Comments[]>([])
-  
+  private readonly xapiService = inject(PersonalService);
+  protected listaAlumnos = signal<Student[]>([]);
+
   ngOnInit():void{
-    this.xapiService.getComentarios().subscribe({
+    this.xapiService.getAlumnos().subscribe({
       next: (dat) => {
-        this.listaComentarios.set(dat)
-        console.log('Datos recibidos de la API',dat)
+        this.listaAlumnos.set(dat)
       },
       error:(err) => {
         console.log('Error al conectar con la API',err)
