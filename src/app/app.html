@@ -1,10 +1,41 @@
-<h1>Lista de alumnos</h1>
-
+<h3>Lista de Estudiantes</h3>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  +
+</button>
 <ul>
-  @for (dat of listaAlumnos(); track dat){
-    <li>{{ dat.name }}</li>
-    <li>{{dat.ru}}</li>
-  }
+    @for(dat of listaStudent(); track dat.ru) { 
+      <li>{{dat.ru}} {{dat.name}} {{dat.ap}} {{dat.am}} {{dat.estado}}</li>
+    } @empty {
+      <li>No se encontraron estudiantes o el formato es incorrecto.</li>
+    }
 </ul>
 
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Adicionar Alumno</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form  [formGroup]="regForm" (ngSubmit)="enviarDatos()">
+      <div class="modal-body">
+        <label for="">RU:</label>
+        <input type="text" formControlName="ru" class="form-control"> <br>
+        <label for="">NOMBRE:</label>
+        <input type="text" formControlName="name" class="form-control"><br>
+        <label for="">AP. MATERNO:</label>
+        <input type="text" formControlName="ap" class="form-control"><br>
+        <label for="">AP. PATERNO:</label>
+        <input type="text" formControlName="am" class="form-control"><br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" #botonCancelar class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 <router-outlet />
