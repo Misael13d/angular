@@ -1,16 +1,36 @@
 <h3>Lista de Estudiantes</h3>
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  +
-</button>
-<ul>
+
+<table class="table table-striped-columns">
+  <thead>
+    <tr>
+      <th scope="col">RU</th>
+      <th scope="col">NOMBRE</th>
+      <th scope="col">AP. MATERNO</th>
+      <th scope="col">AP. PATERNO</th>
+      <th scope="col">ESTADO</th>
+      <th scope="col">OPCIONES</th>
+    </tr>
+  </thead>
+  <tbody>
     @for(dat of listaStudent(); track dat.ru) { 
-      <li>{{dat.ru}} {{dat.name}} {{dat.ap}} {{dat.am}} {{dat.estado}}</li>
-    } @empty {
-      <li>No se encontraron estudiantes o el formato es incorrecto.</li>
+      <tr>
+        <th scope="row">{{dat.ru}}</th>
+        <td>{{dat.name}}</td>
+        <td>{{dat.ap}}</td>
+        <td>{{dat.am}}</td>
+        <td>{{dat.estado}}</td>
+        <td>
+          <button (click)="cargarAlumnos(dat.ru)" type="button" class="btn btn-primary">MODIFICAR</button>
+          <button type="button" class="btn btn-danger">ELIMINAR</button>
+        </td>
+      </tr>
     }
-</ul>
+  </tbody>
+</table>
 
-
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  ADICIONAR ALUMNO
+</button>
   <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -38,4 +58,36 @@
     </div>
   </div>
 </div>
+
+ <!-- Modal MODIFICAR -->
+<div class="modal fade" #modModal id="modificarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">MODIFICAR DATOS ESTUDIANTE</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form  [formGroup]="regForm" (ngSubmit)="guardarModificacion()">
+      <div class="modal-body">
+        <label for="">RU:</label>
+        <input type="text" formControlName="ru" class="form-control"> <br>
+        <label for="">NOMBRE:</label>
+        <input type="text" formControlName="name" class="form-control"><br>
+        <label for="">AP. MATERNO:</label>
+        <input type="text" formControlName="ap" class="form-control"><br>
+        <label for="">AP. PATERNO:</label>
+        <input type="text" formControlName="am" class="form-control"><br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" #botonCancelar class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button  type="submit" class="btn btn-primary">Modificar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
 <router-outlet />
