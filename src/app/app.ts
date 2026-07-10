@@ -2,7 +2,6 @@ import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core'
 import { RouterOutlet } from '@angular/router';
 import { PersonasService, Student } from './servicio/personas.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PersonasService, Student } from './servicio/personas.service';
 
 @Component({
   selector: 'app-root',
