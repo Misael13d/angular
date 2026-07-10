@@ -21,7 +21,7 @@ export interface ApiResponse {
 @Injectable({
   providedIn: 'root',
 })
-export class PersonalService {
+export class PersonasService {
   private readonly http = inject(HttpClient);
   
   private readonly urlApi = 'https://tallerweb.uajms.edu.bo';
