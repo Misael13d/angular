@@ -63,7 +63,6 @@ export class App {
 	}
 
   enviarDatos(){
-    this.regForm.reset();
     if (this.regForm.invalid){ return }
     console.log("Guardando Datos..."+JSON.stringify(this.regForm.value))
     const datosParaGuardar = {
@@ -122,11 +121,29 @@ export class App {
     this.regForm.reset();
 	}
 
+  //eliminar estudiantes
+  eliminarDesdeBoton(ru:number){
+    const confirmacion = confirm("¿Seguro de que desea eliminar al estudiante con RU: " + ru + "?")
+    if (confirmacion) {
+      this.apiService.deleteStudent(ru).subscribe({
+          next: (estudianteModificado) => {
+          console.log('Estudiante actualizado con éxito:', estudianteModificado);
+             this.listarEstudiantes();
+          },
+          error: (err) => {
+          console.error('Error al actualizar el estudiante:', err);
+          }
+      });
+   }
+	}
+
   cerrarModal() {
         if (this.modalElement) {
           const modalInstance = bootstrap.Modal.getInstance(this.modalElement.nativeElement);
           modalInstance?.hide();
         }
 	}
+
+
 
 }//end of class

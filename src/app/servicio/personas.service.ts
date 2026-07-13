@@ -55,5 +55,12 @@ export class PersonasService {
       map(response => response.data)
     );
   }
+  
+  //MÉTODO DELETE PARA ELIMINAR POR RU
+  deleteStudent(ru: number): Observable<any> {
+    return this.http.delete<ApiResponseSingle>(this.urlApi+'/api/student/'+ru).pipe(
+      map(response => response.data)
+    );
+  }
 
 } //end of class
