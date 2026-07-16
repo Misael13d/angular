@@ -13,7 +13,8 @@ export class App {
   protected readonly title = signal('proy2');
   private readonly apiService = inject(PersonasService) 
 
-  protected listaPredios = signal<Student[]>([])
+  protected listaPredios = signal<any[]>([])
+  protected listaStudent = signal<Student[]>([])
   regForm : FormGroup
   constructor(){
     this.regForm = new FormGroup({

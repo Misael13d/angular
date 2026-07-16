@@ -1,21 +1,33 @@
-<h3>Ingresar al sistema</h3>
+<h3 align="center">Ingresar al sistema</h3>
+
+<div>
 	<form  [formGroup]="regForm" (ngSubmit)="enviarDatosFormulario()">
 		<label for="">Login</label>
-		<input type="text" formControlName="login"> <br>
-		<label for="">clave:</label>
-		<input type="text" formControlName="clave"><br>
-		<button type="submit" (click)="enviarDatosFormulario()">Enviar login</button>
+		<input type="text" formControlName="login" class="form-control"> <br>
+		<label for="">clave</label>
+		<input type="text" formControlName="clave" class="form-control"><br>
+		<button type="submit" (click)="enviarDatosFormulario()" class="btn btn-primary">Enviar login</button>
 	</form>
-
-
-
+</div>
 <h3>Lista Predios</h3>
-<ul>
-  @for (dat of listaPredios(); track dat){
-    <li>{{dat.nompredio}}</li>
-  }
-</ul>
 
 
-
+<table class="table table-striped-columns">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Seccion</th>
+      <th scope="col">Sector</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(dat of listaPredios(); track dat) { 
+      <tr>
+        <td>{{dat.nompredio}}</td>
+        <td>{{dat.nomseccion}}</td>
+        <td>{{dat.nomsector}}</td>
+      </tr>
+    }
+  </tbody>
+</table>
 <router-outlet />
