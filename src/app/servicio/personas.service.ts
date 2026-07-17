@@ -47,21 +47,21 @@ export class PersonasService {
 	  return this.http.post<Data>(this.urlApi+"/auth/log-in", body, httpOptions);
 	}
 
-	setCurrentSession(sessionName: string, data: string): void {
-		sessionStorage.setItem(sessionName, JSON.stringify(data));
+	setCurrentLocal(sessionName: string, data: string): void {
+		localStorage.setItem(sessionName, JSON.stringify(data));
 	}
 
 	getToken(): string {
-		const session = this.getCurrentSession<Data>('currentUser');
+		const session = this.getCurrentLocal<Data>('currentUser');
 		return session?.['otherParams'].token ?? '';
 	}
 
-	getCurrentSession<T = any>(sessionName: string): T | null {
-		const data = sessionStorage.getItem(sessionName);
+	getCurrentLocal<T = any>(sessionName: string): T | null {
+		const data = localStorage.getItem(sessionName);
 		return data ? (JSON.parse(data) as T) : null;
 	}
 
-  getPredios(): Observable<any> {
+  	getPredios(): Observable<any> {
 		let url:string = this.urlApi+"/api/predios/libres"
 		const xToken = this.getToken()
 		let headers = new HttpHeaders();

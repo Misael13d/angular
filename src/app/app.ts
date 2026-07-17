@@ -43,7 +43,7 @@ export class App {
         next: (data: any) => {
           console.log('Respuesta del servicio:', data);
           if (data.otherParams) {
-            this.apiService.setCurrentSession('currentUser', data);
+            this.apiService.setCurrentLocal('currentUser', data);
             this.listaDePredios();
           } else {
             console.log("error")

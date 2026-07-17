@@ -9,12 +9,14 @@
 		<button type="submit" (click)="enviarDatosFormulario()" class="btn btn-primary">Enviar login</button>
 	</form>
 </div>
+<br>
 <h3>Lista Predios</h3>
+<br>
 
-
-<table class="table table-striped-columns">
-  <thead>
+<table class="table table-success table-striped-columns">
+  <thead class="table-dark">
     <tr>
+      <th scope="col">Codigo</th>
       <th scope="col">Nombre</th>
       <th scope="col">Seccion</th>
       <th scope="col">Sector</th>
@@ -23,6 +25,7 @@
   <tbody>
     @for(dat of listaPredios(); track dat) { 
       <tr>
+        <td>{{dat.codpre}}</td>
         <td>{{dat.nompredio}}</td>
         <td>{{dat.nomseccion}}</td>
         <td>{{dat.nomsector}}</td>
@@ -30,4 +33,5 @@
     }
   </tbody>
 </table>
+
 <router-outlet />
